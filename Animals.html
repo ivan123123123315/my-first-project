@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Звуки тварин</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Заголовок -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="fade-in">Відкрийте звуки природи</h1>
+            <p class="slide-up">Слухайте голоси природи разом із нашими чудовими друзями!</p>
+        </div>
+    </header>
+
+    <!-- Розділ зі звуками тварин -->
+    <section class="animals">
+        <div class="container">
+            <h2 class="color-change">Голоси тварин</h2>
+            <div class="animal-list" id="animalList"></div>
+        </div>
+    </section>
+
+    <!-- Підвал -->
+    <footer>
+        <p>&copy; 2025 Звуки тварин. Створено з ❤️ командою Grok 3.</p>
+    </footer>
+
+    <script>
+        class Animal {
+            constructor(name, sound) {
+                this.name = name;
+                this.sound = sound;
+            }
+            makeSound() {
+                return `${this.name} каже: ${this.sound}`;
+            }
+        }
+
+        class Panda extends Animal {
+            constructor(name) {
+                super(name, "Ррр");
+            }
+        }
+
+        class Zebra extends Animal {
+            constructor(name) {
+                super(name, "Ііііі");
+            }
+        }
+
+        class Cat extends Animal {
+            constructor(name) {
+                super(name, "Няв");
+            }
+        }
+
+        const animals = [
+            new Panda("Панда"),
+            new Zebra("Зебра"),
+            new Cat("Кіт")
+        ];
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const animalList = document.getElementById("animalList");
+            animals.forEach(animal => {
+                const animalCard = document.createElement("div");
+                animalCard.classList.add("animal-card");
+
+                const category = document.createElement("h3");
+                category.textContent = `🐾 ${animal.name} 🐾`;
+                
+                const sound = document.createElement("p");
+                sound.textContent = animal.makeSound();
+                
+                animalCard.appendChild(category);
+                animalCard.appendChild(sound);
+                animalList.appendChild(animalCard);
+            });
+        });
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(45deg, #ff3d00, #ffb74d);
+            color: #222;
+            animation: background-animation 10s infinite alternate;
+        }
+
+        @keyframes background-animation {
+            0% { background: #ff3d00; }
+            100% { background: #ffb74d; }
+        }
+
+        .hero {
+            height: 100vh;
+            background: url('nature.jpg') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+        }
+
+        .fade-in {
+            animation: fade-in 2s ease-in;
+        }
+
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .slide-up {
+            animation: slide-up 2s ease-out;
+        }
+
+        @keyframes slide-up {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .color-change {
+            animation: color-change 3s infinite alternate;
+        }
+
+        @keyframes color-change {
+            from { color: #ff3d00; }
+            to { color: #d500f9; }
+        }
+
+        .animals {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #fff176, #ff7043);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .animal-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .animal-card {
+            background: linear-gradient(135deg, #f50057, #ff9100);
+            border-radius: 15px;
+            padding: 2rem;
+            width: 320px;
+            text-align: center;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            color: white;
+        }
+
+        .animal-card:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .animal-card h3 {
+            font-size: 1.8rem;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        .animal-card p {
+            font-size: 1.4rem;
+            color: #ffe082;
+        }
+
+        footer {
+            background-color: #d500f9;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            font-size: 1rem;
+        }
+    </style>
+</body>
+</html>
